@@ -1,20 +1,14 @@
-require('dotenv').config();
+const app = require('../app');
 
-const app = require('./app');
-const { connectMobgoDB } = require('./db/connection');
+const db = require('../model/db');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3030;
 
-const start = async () => {
-  try {
-    await connectMobgoDB();
-    app.listen(PORT, error => {
-      if (error) console.log(`Error at a server launch: ${error}`);
-      console.log('Server running. Use our API on port:', PORT);
-    });
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
-start();
+db.then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server running. Use our API on port: ${PORT}`);
+  });
+}).catch(err => {
+  console.log(`Server not running.Error message${err.message}`);
+  process.exit(1);
+});
