@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const { StatusCode } = require('../../../helpers/constants');
+const {StatusCode } = require("../../../helpers/constants");
 
 const schemaCreateContact = Joi.object({
   name: Joi.string().alphanum().min(3).max(30).required(),
@@ -11,7 +11,7 @@ const schemaCreateContact = Joi.object({
     .required(),
   phone: Joi.string()
     .pattern(/^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$/)
-    .required(),
+    .required(),  
 });
 
 const schemaUpdateContact = Joi.object({
@@ -24,7 +24,7 @@ const schemaUpdateContact = Joi.object({
     .optional(),
   phone: Joi.string()
     .pattern(/^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$/)
-    .optional(),
+    .optional(), 
 });
 
 const validate = (schema, obj, next) => {

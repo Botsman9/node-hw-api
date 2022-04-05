@@ -1,16 +1,16 @@
-const fs = require('fs').promises;
+const fs = require('fs').promises
 
-const isAccessible = path => {
-  return fs
-    .access(path)
-    .then(() => true)
-    .catch(() => false);
-};
+const isAccessible = (path) => {
+    return fs
+        .access(path)
+        .then(() => true)
+        .catch(() => false)
+}
 
-const createFolderIsExist = async folder => {
-  if (!(await isAccessible(folder))) {
-    await fs.mkdir(folder);
-  }
-};
+const createFolderIsExist = async (folder) => {
+    if (!(await isAccessible(folder))) {
+        await fs.mkdir(folder)
+    }
+}
 
-module.exports = createFolderIsExist;
+module.exports = createFolderIsExist
