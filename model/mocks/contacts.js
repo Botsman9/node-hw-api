@@ -1,4 +1,5 @@
 const { contacts } = require('./data');
+const jest = require('jest');
 
 const listContacts = jest.fn(
   (userId, { sortBy, sortByDesc, filter, limit = '5', offset = '0' }) => {

@@ -5,8 +5,8 @@ const guard = require('../../../helpers/guard')
 const validate=require('./validation')
 
 router
-  .get('/', guard,  contactsController.getAllContats)
-  .post('/', guard,validate.createContact, contactsController.createContact)
+  .get('/', guard, contactsController.getAllContats)
+  .post('/', guard, contactsController.createContact)
 
 router
   .get("/:contactId", guard, contactsController.getContactByID)
