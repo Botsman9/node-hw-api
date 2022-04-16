@@ -1,5 +1,6 @@
 const { users } = require('./data');
 const bcrypt = require('bcryptjs');
+const jest = require('jest');
 
 const findByEmail = jest.fn(email => {
   const [user] = users.filter(el => String(el.email) === String(email));

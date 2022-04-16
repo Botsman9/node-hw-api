@@ -1,19 +1,19 @@
-const { users } = require('./data')
-const bcrypt = require('bcryptjs')
+const { users } = require('./data');
+const bcrypt = require('bcryptjs');
+const jest = require('jest');
 
-const findByEmail = jest.fn((email) => {
-  const [user] = users.filter((el) => String(el.email) === String(email))
-  return user
-})
+const findByEmail = jest.fn(email => {
+  const [user] = users.filter(el => String(el.email) === String(email));
+  return user;
+});
 
-const findById = jest.fn((id) => {
-  const [user] = users.filter((el) => String(el._id) === String(id))
-  return user
-})
-
+const findById = jest.fn(id => {
+  const [user] = users.filter(el => String(el._id) === String(id));
+  return user;
+});
 
 const create = jest.fn(({ name = 'Guest', email, password, sex = 'f' }) => {
-  const pass = bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
+  const pass = bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
   const newUser = {
     email,
     password: pass,
@@ -23,21 +23,21 @@ const create = jest.fn(({ name = 'Guest', email, password, sex = 'f' }) => {
     validPassword: function (pass) {
       return bcrypt.compareSync(pass, this.password);
     },
-  }
-  users.push(newUser)
-  return newUser
-})
+  };
+  users.push(newUser);
+  return newUser;
+});
 
 const updateToken = jest.fn((id, token) => {
-  return {}
-})
+  return {};
+});
 
 const updateAvatar = jest.fn((id, avatar, imgIdCloud) => {
-  return {}
-})
+  return {};
+});
 
-const findByToken = jest.fn((userToken) => {
-  const [user] = users.filter((el) => String(el.token) === String(userToken));
+const findByToken = jest.fn(userToken => {
+  const [user] = users.filter(el => String(el.token) === String(userToken));
   return user;
 });
 
@@ -48,4 +48,4 @@ module.exports = {
   updateToken,
   updateAvatar,
   findByToken,
-}
+};

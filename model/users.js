@@ -23,11 +23,21 @@ const findByToken = async (token) => {
   return await User.findOne({ token });
 };
 
+const findByVerifyToken = async (verifyToken) => {
+  return await User.findOne({ verifyToken })
+}
+
+const updateVerifyToken = async (id, verify, verifyToken) => {
+  return await User.findOneAndUpdate({ _id: id }, { verify, verifyToken }) 
+}
+
 module.exports = {
     findByEmail,
     findById,
     create,
     updateToken,
     findByToken,
-    updateAvatar
+    updateAvatar,
+    findByVerifyToken,
+    updateVerifyToken
 }
